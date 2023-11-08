@@ -1,0 +1,35 @@
+.navbar {
+  /*background-color: #006CDC;*/
+  font-family: "ALS Sector", serif;
+  color: #E1EFFB;
+}
+
+.navbar-brand {
+  color: #E1EFFB;
+}
+
+.navbar-brand:hover {
+  color: #E1EFFB;
+}
+
+.nav-logo {
+  height: 2em;
+  width: 2em;
+}
+
+.search-bar {
+  -webkit-align-self: center;
+}
+
+.btn-primary {
+  --bs-btn-bg: #002C5B;
+  --bs-btn-hover-bg: #00244A;
+  --bs-btn-active-bg: #00376d;
+  --bs-btn-hover-color: #E1EFFB;
+  --bs-btn-color: #E1EFFB;
+}
+
+.navbar-spacer {
+  width: 40%;
+}
+
