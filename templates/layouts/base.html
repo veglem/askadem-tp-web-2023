@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>main page</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Navbar-Centered-Links-icons.css' %} ">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-5.3.2-dist/css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'assets/css/navbar.css' %} ">
+</head>
+
+<body style="border-color: var(--bs-emphasis-color);">
+<nav class="navbar sticky-top navbar-expand-lg" aria-label="Offcanvas navbar large" style="background: rgb(0,108,220);">
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}"><img
+            class="rounded d-inline-block align-text-top nav-logo" src="{% static 'assets/img/Logo_Black_No-BG.svg' %} "
+            alt="Logo"> Askadem </a>
+    <button class="navbar-toggler" data-bs-toggle="offcanvas" type="button" data-bs-target="#offcanvasNavbar2"
+            aria-controls="offcanvasNavbar2"><span class="navbar-toggler-icon"></span></button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2"
+         aria-labelledby="offcanvasNavbar2Label" style="background-color: #E1EFFB;">
+        <div class="offcanvas-header" style="background-color: #006CDC;">
+            <h5 class="offcanvas-title" id="offcanvasNavbar2Label"></h5>
+            <button class="btn-close btn-close-white" type="button" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body" style="background-color: #006CDC;">
+            <div class="flex-fill"></div>
+            <form class="d-flex d-lg-flex justify-content-start align-items-lg-center mt-3 mt-lg-0" role="search"
+                  style="padding-right: 20px;margin: 9px;margin-bottom: 0;"><input
+                    class="form-control float-none me-2" type="search" aria-label="Search" placeholder="Search"
+                    style="display: inline-block;">
+                <button class="btn btn-outline-primary d-flex" type="submit"
+                        style="--bs-btn-bg: #002C5B;--bs-btn-hover-bg: #00244A;--bs-btn-active-bg: #00376d;--bs-btn-hover-color: #E1EFFB;--bs-btn-color: #E1EFFB;">
+                    Search
+                </button>
+            </form>
+            <ul class="nav flex-grow-1 justify-content-start align-items-center pe-3">
+                <li class="nav-item">
+                    <a href="{% url 'ask' %}">
+                        <button class="btn btn-primary" type="button"
+                                style="--bs-btn-bg: #DD161D;--bs-btn-hover-bg: #00244A;--bs-btn-active-bg: #00376d;--bs-btn-hover-color: #E1EFFB;--bs-btn-color: #E1EFFB;margin: 9px;">
+                            ASK!
+                        </button>
+                    </a>
+                </li>
+            </ul>
+            {% block user_nav %}
+            {% endblock %}
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row flex-wrap-reverse">
+        <div class="col" style="margin-right: 5%;margin-left: 5%;">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="col-lg-4 d-flex flex-column"
+             style="/*margin-right: 5%;*//*margin-left: 5%;*//*overflow: auto;*/position: sticky;padding-top: 20px;">
+            <div style="margin: 10px;">
+                <h1 class="text-center">Popular tags</h1>
+                <div class="row">
+                    <div class="col text-center">
+                        <p>Paragraph</p>
+                    </div>
+                    <div class="col text-center">
+                        <p>Paragraph</p>
+                    </div>
+                    <div class="col text-center">
+                        <p>Paragraph</p>
+                    </div>
+                    <div class="col text-center">
+                        <p>Paragraph</p>
+                    </div>
+                    <div class="col text-center">
+                        <p>Paragraph</p>
+                    </div>
+                </div>
+            </div>
+            <div style="margin: 10px;">
+                <h1 class="text-center">Best members</h1>
+                <div class="row">
+                    <div class="col text-center">
+                        <p>Paragraph</p>
+                    </div>
+                    <div class="col text-center">
+                        <p>Paragraph</p>
+                    </div>
+                    <div class="col text-center">
+                        <p>Paragraph</p>
+                    </div>
+                    <div class="col text-center">
+                        <p>Paragraph</p>
+                    </div>
+                    <div class="col text-center">
+                        <p>Paragraph</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center" style="border-top-style: solid;">
+        <div class="container text-muted py-4 py-lg-5">
+            <ul class="list-inline">
+                <li class="list-inline-item me-4" style="margin-left: 24px;">
+                    <a href="https://t.me/veglem" style="color: rgb(33 37 41 / 75%)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                             viewBox="0 0 16 16" class="bi bi-telegram">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="list-inline-item me-4" style="margin-left: 24px;">
+                    <a href="https://github.com/veglem" style="color: rgb(33 37 41 / 75%)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                             viewBox="0 0 16 16" class="bi bi-github">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+            <p class="mb-0">Copyright © 2023 veglem</p>
+        </div>
+    </footer>
+</div>
+<script src="{% static 'assets/js/jquery.min.js' %} "></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %} "></script>
+</body>
+
+</html>
+

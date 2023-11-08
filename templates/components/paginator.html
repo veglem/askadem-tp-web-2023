@@ -1,0 +1,52 @@
+
+{% if var is None %}
+<nav style="margin-top: 10px;">
+    <ul class="pagination">
+        <li class="page-item{% if page <= 1 %} disabled{% endif %}">
+            <a class="page-link" aria-label="Previous" href="{% url base_url page=page|add:-1 %}">
+                <span aria-hidden="true">«</span></a>
+        </li>
+        {% for i in '012'|make_list %}
+            {% if page|add:i <= max_pages %}
+                <li class="page-item{% if i == '0' %} active{% endif %}">
+                    <a class="page-link" href="{% url base_url page=page|add:i %}">{{ page|add:i }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        <li class="page-item"><a class="page-link" href="#">...</a></li>
+
+        <li class="page-item
+                {% if page >= max_pages %}
+                    disabled
+                {% endif %}">
+            <a class="page-link" aria-label="Next"
+               href="{% url base_url page=page|add:1 %}"><span aria-hidden="true">»</span></a>
+        </li>
+    </ul>
+</nav>
+{% else %}
+<nav style="margin-top: 10px;">
+    <ul class="pagination">
+        <li class="page-item{% if page <= 1 %} disabled{% endif %}">
+            <a class="page-link" aria-label="Previous" href="{% url base_url var page|add:-1 %}">
+                <span aria-hidden="true">«</span></a>
+        </li>
+        {% for i in '012'|make_list %}
+            {% if page|add:i <= max_pages %}
+                <li class="page-item{% if i == '0' %} active{% endif %}">
+                    <a class="page-link" href="{% url base_url var page|add:i %}">{{ page|add:i }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        <li class="page-item"><a class="page-link" href="#">...</a></li>
+
+        <li class="page-item
+                {% if page >= max_pages %}
+                    disabled
+                {% endif %}">
+            <a class="page-link" aria-label="Next"
+               href="{% url base_url var page|add:1 %}"><span aria-hidden="true">»</span></a>
+        </li>
+    </ul>
+</nav>
+{% endif %}

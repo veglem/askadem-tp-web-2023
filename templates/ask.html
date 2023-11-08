@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block user_nav %}
+    {% include 'components/nav_bar_item.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xl-12 d-sm-flex d-lg-flex d-xl-flex flex-nowrap justify-content-sm-center align-items-sm-center justify-content-lg-start align-items-lg-center align-items-xl-center"
+             style="margin-top: 20px;">
+            <h1 class="d-xl-flex justify-content-xl-start align-items-xl-center">New question</h1>
+        </div>
+    </div>
+    <div style="margin-top: 10px;margin-right: 10px;padding: 15px;">
+        <div class="row" style="padding-bottom: 10px;">
+            <div class="col-xl-2">
+                <p>Title</p>
+            </div>
+            <div class="col"><input type="text" style="width: inherit;"></div>
+        </div>
+        <div class="row">
+            <div class="col-xl-2">
+                <p>Text</p>
+            </div>
+            <div class="col"><textarea class="form-control-lg" style="height: 200px;width: inherit;"></textarea></div>
+        </div>
+        <div class="row">
+            <div class="col-xl-2">
+                <p>Tags</p>
+            </div>
+            <div class="col"><input type="text" style="width: inherit;"></div>
+        </div>
+        <button class="btn btn-primary" type="button" style="margin-top: 10px;">ASK!</button>
+    </div>
+{% endblock %}

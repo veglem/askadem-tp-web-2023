@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block user_nav %}
+    {% include 'components/nav_bar_item.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xl-12 d-sm-flex d-lg-flex d-xl-flex flex-nowrap justify-content-sm-center align-items-sm-center justify-content-lg-start align-items-lg-center align-items-xl-center"
+             style="margin-top: 20px;">
+            <h1 class="d-xl-flex justify-content-xl-start align-items-xl-center">Login</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-2">
+            <p>Login</p>
+        </div>
+        <div class="col"><input type="text"></div>
+    </div>
+    <div class="row">
+        <div class="col-xl-2">
+            <p>Password</p>
+        </div>
+        <div class="col"><input type="password"></div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary" type="button">Login</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-xl-flex align-items-xl-end" style="height: 3em;"><a href="#">Sign in</a></div>
+    </div>
+{% endblock %}

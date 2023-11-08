@@ -1,0 +1,30 @@
+{% load static %}
+
+{% if IsLogedIn %}
+    <div class="d-flex d-inline-flex" style="margin-left: 9px;margin-right: 9px;">
+        <div class="align-self-center">
+            <div>
+                <a href="{% url 'register' %}">
+                    <button class="btn btn-primary btn-sm" type="submit">sign in</button>
+                </a>
+                <a href="{% url 'login' %}">
+                    <button class="btn btn-primary btn-sm" type="submit">log in</button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="d-flex d-inline-flex" style="margin-left: 9px;margin-right: 9px;"><img width="80" height="80"
+                                                                                       style="width: 80px;padding: 0px;padding-right: 0px;margin: 0px;margin-right: 5px;border-radius: 11px;">
+        <div class="align-self-center"><small class="d-flex justify-content-lg-center">veg_lem</small>
+            <div>
+                <a href="{% url 'settings' %}">
+                    <button class="btn btn-primary btn-sm" type="submit">settings</button>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <button class="btn btn-primary btn-sm" type="submit">log out</button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}

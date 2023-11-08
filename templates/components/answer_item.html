@@ -1,0 +1,24 @@
+{% load static %}
+
+<div style="margin-top: 10px;margin-right: 10px;">
+    <div class="row d-sm-flex flex-row" style="border-style: solid;">
+        <div class="col-md-3 col-xl-3 d-md-flex flex-column justify-content-md-center align-items-md-center">
+            <img style="height: 100px;width: 100px;border-radius: 15px;border-width: 0px;border-style: solid;">
+            <div class="row">
+                <div class="col d-lg-flex align-items-lg-center"><small style="margin-right: 5px;">{{ answer.likes }}</small>
+                    <button class="btn btn-primary" type="button" style="border-radius: 10px;">Like</button>
+                </div>
+            </div>
+        </div>
+        <div class="col d-xl-flex flex-column justify-content-xl-start">
+            <p><span style="color: rgb(0, 0, 0);">{{ answer.content }}</span>
+            </p>
+            <div class="row d-lg-flex justify-content-lg-start align-items-lg-center">
+                <div class="col-md-12 col-lg-3 d-flex d-sm-flex d-md-flex d-lg-flex align-items-center align-items-sm-center align-items-md-center align-items-lg-center">
+                    <input type="checkbox">
+                    <p style="margin-bottom: 0px;margin-left: 6px;">Correct</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

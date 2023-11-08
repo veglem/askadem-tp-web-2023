@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block user_nav %}
+    {% include 'components/nav_bar_item.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xl-12 d-sm-flex d-lg-flex d-xl-flex flex-nowrap justify-content-sm-center align-items-sm-center justify-content-lg-start align-items-lg-center align-items-xl-center"
+             style="margin-top: 20px;">
+            <h1 class="d-xl-flex justify-content-xl-start align-items-xl-center">Tag: {{ tag }}</h1>
+        </div>
+    </div>
+
+    {% for question in questions %}
+        {% include 'components/question_item.html' %}
+    {% endfor %}
+
+    {% include 'components/paginators/tag.html' %}
+
+{% endblock %}
