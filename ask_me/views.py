@@ -11,7 +11,7 @@ QUESTIONS = [
         'title': f'Question {i}',
         'content': f'Content of question {i}.',
         'likes': 10,
-        'answers_count': 5
+        'answers_count': 15
     } for i in range(50)
 ]
 
