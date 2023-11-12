@@ -1,19 +1,18 @@
 from django.http import HttpResponseNotFound
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
+
+from ask_me import models
 
 # Create your views here.
 
 IsLogedIn = True
-QUESTIONS = [
-    {
-        'id': i,
-        'title': f'Question {i}',
-        'content': f'Content of question {i}.',
-        'likes': 10,
-        'answers_count': 15
-    } for i in range(50)
-]
+
+
+def sidebar_info():
+
+    return {'tags': models.Tag.objects.get_top_tags(),
+            'profiles': models.Profile.objects.get_top_users()}
 
 
 def paginate(objects_list, page_num, per_page=10):
@@ -28,7 +27,7 @@ def paginate(objects_list, page_num, per_page=10):
 
 
 def index(request, page=1):
-    page_questions = paginate(QUESTIONS, page)
+    page_questions = paginate(models.Question.objects.get_hot(), page)
     if page_questions is None:
         return HttpResponseNotFound(f"404 Not Found: No such page")
 
@@ -36,30 +35,41 @@ def index(request, page=1):
         'IsLogedIn': IsLogedIn,
         'questions': page_questions,
         'page': page,
-        'max_pages': int(len(QUESTIONS) / 10)})
+        'max_pages': int(len(models.Question.objects.get_hot()) / 10),
+        'sidebar': sidebar_info()})
+
+
+def last(request, page=1):
+    page_questions = paginate(models.Question.objects.get_new(), page)
+    if page_questions is None:
+        return HttpResponseNotFound(f"404 Not Found: No such page")
+
+    return render(request, 'new.html', {
+        'IsLogedIn': IsLogedIn,
+        'questions': page_questions,
+        'page': page,
+        'max_pages': int(len(models.Question.objects.get_hot()) / 10),
+        'sidebar': sidebar_info()})
 
 
 def question(request, question_id, page=1):
-    question_item = QUESTIONS[question_id]
-    answers = [
-        {
-            'content': f'Question {question_id} is complex. This is answer {i}',
-            'likes': 10
-        } for i in range(15)
-    ]
+    question_item = get_object_or_404(models.Question, id=question_id)
 
-    page_answers = paginate(answers, page, 5)
+    page_answers = paginate(models.Answer.objects.get_top_answers(question_item), page, 5)
 
     return render(request, 'question.html', {
         'IsLogedIn': IsLogedIn,
         'question': question_item,
         'answers': page_answers,
         'page': page,
-        'max_pages': int(len(answers) / 5)})
+        'max_pages': int(len(models.Answer.objects.get_top_answers(question_item)) / 5),
+        'sidebar': sidebar_info()})
 
 
 def tag(request, tag_name, page=1):
-    page_questions = paginate(QUESTIONS, page)
+    tag_item = get_object_or_404(models.Tag, name=tag_name)
+
+    page_questions = paginate(models.Question.objects.get_questions_with_tag(tag_item), page)
     if page_questions is None:
         return HttpResponseNotFound(f"404 Not Found: No such page")
 
@@ -68,12 +78,14 @@ def tag(request, tag_name, page=1):
         'questions': page_questions,
         'tag': tag_name,
         'page': page,
-        'max_pages': int(len(QUESTIONS) / 10)})
+        'max_pages': int(len(models.Question.objects.get_questions_with_tag(tag_item)) / 10),
+        'sidebar': sidebar_info()})
 
 
 def ask(request):
     return render(request, 'ask.html', {
-        'IsLogedIn': IsLogedIn
+        'IsLogedIn': IsLogedIn,
+        'sidebar': sidebar_info()
     })
 
 
@@ -81,7 +93,8 @@ def login(request):
     global IsLogedIn
     IsLogedIn = False
     return render(request, 'login.html', {
-        'IsLogedIn': IsLogedIn
+        'IsLogedIn': IsLogedIn,
+        'sidebar': sidebar_info()
     })
 
 
@@ -93,11 +106,13 @@ def logout(request):
 
 def register(request):
     return render(request, 'register.html', {
-        'IsLogedIn': IsLogedIn
+        'IsLogedIn': IsLogedIn,
+        'sidebar': sidebar_info()
     })
 
 
 def settings(request):
     return render(request, 'settings.html', {
-        'IsLogedIn': IsLogedIn
+        'IsLogedIn': IsLogedIn,
+        'sidebar': sidebar_info()
     })

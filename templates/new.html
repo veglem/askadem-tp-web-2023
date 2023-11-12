@@ -10,8 +10,8 @@
     <div class="row">
         <div class="col-xl-12 d-sm-flex d-lg-flex d-xl-flex flex-nowrap justify-content-sm-center align-items-sm-center justify-content-lg-start align-items-lg-center align-items-xl-center"
              style="margin-top: 20px;">
-            <h1 class="d-xl-flex justify-content-xl-start align-items-xl-center">Hot questions</h1>
-            <a class="d-xl-flex" href="{% url 'last' %}" style="margin-left: 20px;">Last questions</a>
+            <h1 class="d-xl-flex justify-content-xl-start align-items-xl-center">Last questions</h1>
+            <a class="d-xl-flex" href="{% url 'index' %}" style="margin-left: 20px;">Hot questions</a>
         </div>
     </div>
 
@@ -19,6 +19,6 @@
         {% include 'components/question_item.html' %}
     {% endfor %}
 
-    {% include 'components/paginators/main.html' %}
+    {% include 'components/paginators/new.html' %}
 
 {% endblock %}
