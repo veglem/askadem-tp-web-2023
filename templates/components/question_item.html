@@ -3,7 +3,7 @@
 <div style="margin-top: 10px;margin-right: 10px;">
     <div class="row d-sm-flex flex-row" style="{% if is_answer is None %} border-style{% else %}border-bottom-style{% endif %}: solid;">
         <div class="col-md-3 col-xl-3 d-md-flex flex-column justify-content-md-center align-items-md-center">
-            <img style="height: 100px;width: 100px;border-radius: 15px;border-width: 0;border-style: solid;">
+            <img style="height: 100px;width: 100px;border-radius: 15px;border-width: 0;border-style: solid;" src="{%static 'assets/img/istockphoto-1300845620-612x612.jpg' %}">
             <small style="font-size: 10px;">by: {{ question.author.user.username }}</small>
             <div class="row">
                 <div class="col d-lg-flex align-items-lg-center"><small
