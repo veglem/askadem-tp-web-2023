@@ -28,6 +28,7 @@ def paginate(objects_list, page_num, per_page=10):
 
 def index(request, page=1):
     page_questions = paginate(models.Question.objects.get_hot(), page)
+    count = models.Question.objects.get_hot().count()
     if page_questions is None:
         return HttpResponseNotFound(f"404 Not Found: No such page")
 
@@ -35,12 +36,13 @@ def index(request, page=1):
         'IsLogedIn': IsLogedIn,
         'questions': page_questions,
         'page': page,
-        'max_pages': int(len(models.Question.objects.get_hot()) / 10),
+        'max_pages': int(count / 10 + (1 if count % 10 != 0 else 0)),
         'sidebar': sidebar_info()})
 
 
 def last(request, page=1):
     page_questions = paginate(models.Question.objects.get_new(), page)
+    count = models.Question.objects.get_new().count()
     if page_questions is None:
         return HttpResponseNotFound(f"404 Not Found: No such page")
 
@@ -48,28 +50,27 @@ def last(request, page=1):
         'IsLogedIn': IsLogedIn,
         'questions': page_questions,
         'page': page,
-        'max_pages': int(len(models.Question.objects.get_hot()) / 10),
+        'max_pages': int(count / 10 + (1 if count % 10 != 0 else 0)),
         'sidebar': sidebar_info()})
 
 
 def question(request, question_id, page=1):
     question_item = get_object_or_404(models.Question, id=question_id)
-
     page_answers = paginate(models.Answer.objects.get_top_answers(question_item), page, 5)
-
+    count = models.Answer.objects.get_top_answers(question_item).count()
     return render(request, 'question.html', {
         'IsLogedIn': IsLogedIn,
         'question': question_item,
         'answers': page_answers,
         'page': page,
-        'max_pages': int(len(models.Answer.objects.get_top_answers(question_item)) / 5),
+        'max_pages': int(count / 5 + (1 if count % 5 != 0 else 0)),
         'sidebar': sidebar_info()})
 
 
 def tag(request, tag_name, page=1):
     tag_item = get_object_or_404(models.Tag, name=tag_name)
-
     page_questions = paginate(models.Question.objects.get_questions_with_tag(tag_item), page)
+    count = models.Question.objects.get_questions_with_tag(tag_item).count()
     if page_questions is None:
         return HttpResponseNotFound(f"404 Not Found: No such page")
 
@@ -78,7 +79,7 @@ def tag(request, tag_name, page=1):
         'questions': page_questions,
         'tag': tag_name,
         'page': page,
-        'max_pages': int(len(models.Question.objects.get_questions_with_tag(tag_item)) / 10),
+        'max_pages': int(count / 10 + (1 if count % 5 != 0 else 0)),
         'sidebar': sidebar_info()})
 
 

@@ -53,7 +53,7 @@ class QuestionManager(models.Manager):
         return self.order_by('-creation_date')
 
     def get_hot(self):
-        return self.order_by('-likes')
+        return self.order_by('-likes', '-creation_date')
 
     def get_questions_with_tag(self, tag):
         return self.filter(tags=tag).order_by('-likes')
